@@ -45,7 +45,6 @@ def install_dependencies():
     """Install dependencies from requirements.txt."""
     logger.info("Installing dependencies...")
 
-    # Use python -m pip instead of pip directly
     if sys.platform == "win32":
         python_path = Path("venv") / "Scripts" / "python.exe"
     else:
@@ -68,7 +67,7 @@ def create_sample_data():
     
     # Determine path to python in the virtual environment
     if sys.platform == "win32":
-        python_path = Path("venv") / "Scripts" / "python"
+        python_path = Path("venv") / "Scripts" / "python.exe"
     else:
         python_path = Path("venv") / "bin" / "python"
     
