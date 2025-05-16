@@ -19,11 +19,10 @@ The easiest way to get started is to use the setup script:
 python setup.py
 ```
 
-This will set up your environment and launch the Streamlit application automatically.
+This will set up the environment and Streamlit application automatically.
 
 ## Manual Installation
 
-If you prefer to set up manually:
 
 ```bash
 # Set up virtual environment

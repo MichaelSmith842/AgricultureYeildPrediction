@@ -9,7 +9,7 @@ streamlit>=1.8.0
 # Machine Learning & Statistics
 scikit-learn>=1.0.0
 joblib>=1.1.0
-shap>=0.40.0
+# shap>=0.40.0
 statsmodels>=0.13.2
 
 # Data processing

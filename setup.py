@@ -44,19 +44,19 @@ def setup_virtual_environment():
 def install_dependencies():
     """Install dependencies from requirements.txt."""
     logger.info("Installing dependencies...")
-    
-    # Determine path to pip in the virtual environment
+
+    # Use python -m pip instead of pip directly
     if sys.platform == "win32":
-        pip_path = Path("venv") / "Scripts" / "pip"
+        python_path = Path("venv") / "Scripts" / "python.exe"
     else:
-        pip_path = Path("venv") / "bin" / "pip"
-    
-    if not pip_path.exists():
-        logger.error(f"Could not find pip at {pip_path}")
+        python_path = Path("venv") / "bin" / "python"
+
+    if not python_path.exists():
+        logger.error(f"Could not find python at {python_path}")
         sys.exit(1)
-    
+
     try:
-        subprocess.run([str(pip_path), "install", "-r", "requirements.txt"], check=True)
+        subprocess.run([str(python_path), "-m", "pip", "install", "-r", "requirements.txt"], check=True)
         logger.info("Dependencies installed successfully.")
     except subprocess.CalledProcessError as e:
         logger.error(f"Failed to install dependencies: {e}")
