@@ -107,20 +107,18 @@ def create_sample_data():
 def run_streamlit_app():
     """Run the Streamlit application."""
     logger.info("Starting Streamlit application...")
-    
-    # Determine path to streamlit in the virtual environment
+
     if sys.platform == "win32":
-        streamlit_path = Path("venv") / "Scripts" / "streamlit"
+        python_path = Path("venv") / "Scripts" / "python.exe"
     else:
-        streamlit_path = Path("venv") / "bin" / "streamlit"
-    
-    if not streamlit_path.exists():
-        logger.error(f"Could not find streamlit at {streamlit_path}")
-        logger.error("Make sure streamlit is installed by running: pip install streamlit")
+        python_path = Path("venv") / "bin" / "python"
+
+    if not python_path.exists():
+        logger.error(f"Could not find python at {python_path}")
         sys.exit(1)
-    
+
     try:
-        subprocess.run([str(streamlit_path), "run", "src/app/main.py"], check=True)
+        subprocess.run([str(python_path), "-m", "streamlit", "run", "src/app/main.py"], check=True)
     except subprocess.CalledProcessError as e:
         logger.error(f"Failed to run Streamlit application: {e}")
     except KeyboardInterrupt:
