@@ -1,0 +1,132 @@
+Project Overview Update
+I've identified the optimal climate datasets to use for our Agricultural Yield Climate Impact Analysis System capstone project. After researching available sources, I've determined that the PRISM Climate Dataset from Oregon State University will provide the most comprehensive and agriculturally-relevant climate variables to pair with our USDA agricultural yield data.
+Data Sources
+1. USDA Agricultural Data (Already Implemented)
+
+Source: USDA National Agricultural Statistics Service (NASS) QuickStats API
+API Key: 030B1C21-01BF-3BCC-855F-BEE447E9E44D
+Years: 1997-2017 (Census data collected every 5 years)
+Focus: Field crops (corn, soybeans, wheat, cotton, rice)
+
+2. PRISM Climate Data (New Addition)
+
+Source: Oregon State PRISM Climate Group
+Access Method: Web Service API (no key required)
+Base URL: https://services.nacse.org/prism/data/get/
+Data Types:
+
+Monthly 30-year normals (1991-2020)
+Daily and monthly time series (1981-present)
+
+
+Resolution: Available at both 4km and 800m (we'll use 4km for efficiency)
+
+Key Climate Variables to Implement
+The PRISM dataset offers several variables particularly relevant to agricultural yield prediction:
+
+Temperature Variables:
+
+tmin, tmax, tmean: Daily/monthly minimum, maximum, and mean temperatures
+
+
+Precipitation Variables:
+
+ppt: Total precipitation
+
+
+Growing Degree Days:
+
+grdd-base50: Growing degree days with base 50°F (standard for corn)
+
+
+Frost/Freeze Variables (available in annual normals):
+
+Last/first freeze dates
+Growing season length
+
+
+
+Data Acquisition Requirements
+PRISM Climate Data Access Pattern
+The PRISM data can be accessed via a RESTful web service with the following URL pattern:
+https://services.nacse.org/prism/data/get/<region>/<resolution>/<variable>/<date>
+Where:
+
+<region> is "us" for Continental United States
+<resolution> is "4km" (or "800m" if needed)
+<variable> is one of: "ppt", "tmin", "tmax", "tmean", etc.
+<date> format depends on the data type:
+
+For monthly data: YYYYMM (e.g., "201701" for January 2017)
+For daily data: YYYYMMDD (e.g., "20170115" for January 15, 2017)
+
+
+
+The API returns a zip file containing the climate data in GeoTIFF format along with metadata files.
+Implementation Tasks Needed
+
+Extend Data Acquisition Module:
+
+Create functions to download PRISM climate data via their web service
+Implement both single downloads and batch processing for multiple dates
+Handle the extraction and processing of the returned zip files
+
+
+Data Processing Updates:
+
+Create parsers for GeoTIFF climate data
+Develop methods to calculate state-level climate averages from gridded data
+Implement temporal aggregation to match climate data with growing seasons
+
+
+Feature Engineering Additions:
+
+Calculate growing season climate averages
+Develop heat/cold stress indices based on temperature thresholds
+Create drought indices from precipitation patterns
+
+
+Integration with Existing Codebase:
+
+Integrate the climate data processing with our existing USDA data pipeline
+Create merged datasets for analysis and modeling
+
+
+Update Analysis & Visualization Components:
+
+Add climate data exploration tools to the dashboard
+Create climate-yield correlation visualizations
+Implement climate variable importance analysis
+
+
+
+Specific Requirements for Data Processing
+
+Spatial Aggregation:
+
+We need to aggregate the gridded PRISM data to the state level to match our USDA data
+This requires calculating area-weighted averages of climate variables within state boundaries
+We'll need to use GIS operations to extract climate data for agricultural regions
+
+
+Temporal Alignment:
+
+Match monthly/seasonal climate data with the appropriate growing seasons for each crop
+Create annual climate summaries aligned with agricultural census years (1997, 2002, 2007, 2012, 2017)
+
+
+Data Storage:
+
+Store the raw PRISM data in the data/raw/prism directory
+Process and save state-level aggregated climate data in data/processed
+
+
+
+Preferred Implementation Approach
+
+Start with a focused subset of data to test the pipeline (e.g., corn yields for a few states matched with temperature and precipitation)
+Begin with the most recent census year (2017) to establish the pipeline before expanding to all years
+Use the 4km resolution PRISM data initially, as it provides sufficient detail while requiring less storage and processing
+Prioritize monthly data over daily data for the initial implementation to simplify processing
+
+This approach will allow us to quickly establish a working pipeline and demonstrate the relationship between climate variables and agricultural yields before expanding to the full dataset and more complex analyses.

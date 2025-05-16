@@ -1,0 +1,152 @@
+Agricultural Yield Climate Impact Analysis System - WGU Capstone Project
+Project Overview
+I'm developing an Agricultural Yield Climate Impact Analysis System for my WGU Computer Science capstone. This interactive data product will analyze relationships between climate variables and field crop yields, allowing users to create what-if scenarios to predict how climate changes might affect agricultural productivity.
+Core Datasets
+
+USDA Census of Agriculture Data (1997-2017)
+
+Focus on Field Crops category
+National-level yield and production data
+Available from USDA QuickStats (https://quickstats.nass.usda.gov/)
+Census occurs every 5 years (1997, 2002, 2007, 2012, 2017)
+
+
+U.S. Climate Normals (1981-2010)
+
+Annual/Seasonal climate normals
+Variables include temperature, precipitation, freeze dates
+Available from NOAA Climate Data Online
+
+
+
+Technical Approach
+
+Implementation: Streamlit-based web application
+Data Storage: CSV files (no database required)
+Analysis: Python (Pandas, NumPy, scikit-learn)
+Visualization: Plotly, Matplotlib, Seaborn, Streamlit components
+Models: Machine learning regression models (Random Forest, Gradient Boosting)
+
+Project Requirements
+The data product must include:
+
+Descriptive analytics (statistical analysis of historical relationships)
+Predictive analytics (ML models to forecast yields based on climate)
+Data cleaning and preprocessing capabilities
+Interactive visualizations
+User-friendly dashboard with at least three visualization types
+Machine learning implementation
+Accuracy evaluation methods
+
+Development Environment
+
+macOS on M3 Pro MacBook Pro
+VS Code as IDE
+Python 3.9+ with virtual environment
+
+Project Structure
+agricultural-yield-climate-impact/
+│
+├── data/                      # Data directory
+│   ├── raw/                   # Original, immutable data
+│   ├── interim/               # Intermediate data that has been transformed
+│   ├── processed/             # Final, canonical data sets for modeling
+│   └── sample/                # Small sample datasets for testing
+│
+├── notebooks/                 # Jupyter notebooks for exploration and communication
+│
+├── src/                       # Source code for use in this project
+│   ├── data/                  # Scripts to download or generate data
+│   ├── features/              # Scripts to turn raw data into features for modeling
+│   ├── models/                # Scripts to train models and then use trained models
+│   ├── visualization/         # Scripts to create exploratory and results visuals
+│   └── app/                   # Streamlit application code
+│
+├── tests/                     # Unit tests
+│
+├── docs/                      # Documentation
+│
+├── reports/                   # Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures/               # Generated graphics and figures for documentation
+│
+├── models/                    # Trained and serialized models, model predictions
+│
+├── requirements.txt           # Project dependencies
+└── README.md                  # Project description
+Sample Data Format
+USDA Data Sample
+YEAR,CROP,YIELD,HARVESTED_ACRES,PRODUCTION
+1997,CORN,127.0,72700000,9207000000
+2002,CORN,129.3,69330000,8966800000
+2007,CORN,151.1,86520000,13073900000
+2012,CORN,123.4,87375000,10780300000
+2017,CORN,176.6,82733000,14609400000
+NOAA Climate Data Sample
+STATION,STATION_NAME,ELEVATION,LATITUDE,LONGITUDE,DATE,DLY-TMIN-NORMAL,DLY-TMAX-NORMAL,MTD-PRCP-NORMAL
+GHCND:USC00327027,PETERSBURG 2 N ND US,466.3,48.0355,-98.01,20100101,-33,145,2
+GHCND:USC00327027,PETERSBURG 2 N ND US,466.3,48.0355,-98.01,20100102,-35,144,4
+Key Components to Implement
+
+Data Processing Pipeline
+
+Script to download/import USDA and NOAA data
+Data cleaning and preprocessing functions
+Feature engineering for climate variables (e.g., growing degree days, frost-free period)
+Data merging and transformation
+
+
+Machine Learning Models
+
+Descriptive statistical analysis of climate-yield relationships
+Predictive models using Random Forest and Gradient Boosting
+Model training, evaluation, and comparison
+Feature importance analysis
+Scenario prediction functionality
+
+
+Visualization Components
+
+Time series visualizations of yields and climate variables
+Correlation analysis visualizations
+Prediction and scenario comparison visualizations
+Climate sensitivity heatmaps
+
+
+Streamlit Dashboard
+
+Multi-tab interface for different analysis types
+Interactive controls for scenario building
+Responsive visualizations
+User guidance and explanations
+
+
+Documentation
+
+Business vision document
+Code documentation
+User guide
+Model accuracy assessment
+
+
+
+Implementation Steps
+
+Set up development environment and project structure
+Implement data download and processing pipeline
+Develop feature engineering functions
+Train and validate machine learning models
+Create visualization components
+Build Streamlit dashboard interface
+Test and optimize application
+Prepare documentation
+
+Specific Assistance Needed
+I'm looking for help implementing the entire project, with particular focus on:
+
+Setting up the correct project structure and environment
+Implementing effective data processing for the USDA and NOAA datasets
+Creating appropriate machine learning models for yield prediction
+Developing interactive visualizations for the Streamlit dashboard
+Ensuring the code is well-documented and follows best practices
+
+Please provide code, explanations, and guidance to help me complete this capstone project. I'll be using Python with Streamlit as the primary technologies.
